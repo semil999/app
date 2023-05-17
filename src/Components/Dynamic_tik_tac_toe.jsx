@@ -92,8 +92,6 @@ const Dynamic_tik_tac_toe = () => {
         obj.click = false
         let newary = copyary.map(x => x.id == obj.id ? x = obj : x)
         setary([...newary])
-        let n = Number(rowValue)
-        let aaa = []
 
         for(let i=0;i<lines.length;i++){
           // if(ary.length == 9 && (ary[lines[i][0]]?.value && ary[lines[i][0]]?.value == ary[lines[i][1]]?.value && ary[lines[i][0]]?.value == ary[lines[i][2]]?.value)){
@@ -108,16 +106,42 @@ const Dynamic_tik_tac_toe = () => {
           // else if(ary.length == 36 && (ary[lines[i][0]]?.value && ary[lines[i][0]]?.value == ary[lines[i][1]]?.value && ary[lines[i][0]]?.value == ary[lines[i][2]]?.value && ary[lines[i][0]]?.value == ary[lines[i][3]]?.value && ary[lines[i][0]]?.value == ary[lines[i][4]]?.value && ary[lines[i][0]]?.value == ary[lines[i][5]]?.value)){
           //   setwinner(`${ary[lines[i][0]].value} is Winner`)
           // }
-          for(let j=0;j<lines[i].length;j++){
-            if(ary[lines[i][0]].value == ary[lines[i][j]].value){
-              aaa.push(true)
-            }
-          } 
-        }
-        console.log(lines)
-        console.log(ary)
-        console.log(aaa , 'aaaa')
+          // for(let j=0;j<lines[i].length;j++){
+          //   if(ary[lines[i][0]].value == ary[lines[i][j]].value){
+          //     aaa.push(true)
+          //   }
+          // } 
 
+          // let currResult = [];
+
+          // ary.forEach((x,i) => {
+          //   if (x.value == obj.value) {
+          //     currResult.push(x);
+          //   }
+          // });
+
+          let cc = 0;
+          let n = Number(rowValue)
+          ary.forEach((x) => {
+              if(x.value != ''){
+                  cc++;
+              }
+          })
+
+          lines.forEach((condition) => {
+            // const isMatched = condition.reduce((isMatched, currVal, i) => currResult[i] !== currVal ? false : isMatched, true);
+            const isMatched = condition.map((a) => ary[condition[0]].value != "" && ary[condition[0]].value == ary[a].value ? true : false)
+            
+              let mm = isMatched.every(x => x == true)
+
+              if(mm == true){
+                setwinner(`${ary[condition[0]].value} is Winner`)
+              }
+              else if(cc == (n*n) && mm == false){
+                setwinner('Match Draw')
+              }
+              });
+        }
         // for(let i=0;i<ary.length;i+=n){
         //   if(ary.length == 9 && (ary[i]?.value == ary[i+1]?.value && ary[i]?.value == ary[i+2]?.value && ary[i]?.value != "")){ setwinner(`${ary[i].value} is Winner`) }
         //   else if(ary.length == 16 && (ary[i]?.value == ary[i+1]?.value && ary[i]?.value == ary[i+2]?.value && ary[i]?.value == ary[i+3]?.value && ary[i]?.value != "")){ setwinner(`${ary[i].value} is Winner`) }
