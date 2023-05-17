@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import "./Dynamic_tik_tac_toe.css"
+import "./DynamicTikTacToe.css"
 import Swal from 'sweetalert2'
 
 const DynamicTikTacToe = () => {
